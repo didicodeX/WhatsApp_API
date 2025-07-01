@@ -4,7 +4,7 @@ import "./src/config/database.config.js";
 
 import http from "http";
 import app from "./app.js";
-import { setupSocket } from "./src/config/socket.config.js";
+import { setupSocket } from "./src/socket/index.js";
 
 const PORT = process.env.PORT || 3000;
 

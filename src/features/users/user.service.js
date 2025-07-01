@@ -11,9 +11,9 @@ export const userService = {
       throw new Error("User not found");
     }
     return {
-      id: user._id,
+      _id: user._id,
       email: user.email,
-      username: user.username,
+      name: user.name,
     };
   },
 };

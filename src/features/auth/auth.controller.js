@@ -1,4 +1,6 @@
+import { log } from "console";
 import { cookieOptions } from "../../config/cookie.config.js";
+import { userService } from "../users/user.service.js";
 import { authService } from "./auth.service.js";
 
 export const register = async (req, res) => {
@@ -20,9 +22,12 @@ export const login = async (req, res) => {
   }
 };
 
-export const getCurrentUser = (req, res) => {
+export const getCurrentUser = async (req, res) => {
   try {
-    const user = req.user; 
+    const user = await userService.getUserById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
     res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
